@@ -87,5 +87,5 @@ def main(playlist_url):
 
 
 if __name__ == "__main__":
-    playlist_url = "https://www.youtube.com/playlist?list=PLMmqTuUsDkRJR0fglM0pBwNN5EUVGs4Y-"
+    playlist_url = "https://www.youtube.com/playlist?list=PLxnIGAClR9Jv5W2PW4N_XsZqL2bv8zwJc"
     main(playlist_url)
