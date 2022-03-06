@@ -8,6 +8,7 @@ from random import randint
 def downloadVideosFromPlaylist(playlist_url):
     print('Downloading videos from playlist')
     playlist = Playlist(playlist_url)
+    playlist = playlist[:10]
     print('{} videos in the playlist'.format(len(playlist)))
     for video in playlist:
 
@@ -18,10 +19,9 @@ def downloadVideosFromPlaylist(playlist_url):
             script_path = os.getcwd()
             final_path = '{}//visual'.format(script_path)
             path = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')\
-                .desc().first().download(output_path=final_path, filename='{} {}'.format(yt.length, yt.title))
+                .desc().first().download(output_path=final_path, filename='{} {}.mp4'.format(yt.length, yt.title))
             print(path)
             print('Complete!')
-            break
         except:
             print('Error while downloading video')
 
@@ -68,8 +68,7 @@ def main(playlist_url):
 
     for video in playlist:
 
-        #try:
-        if 1 == 1:
+        try:
             yt = YouTube(video)
             title = yt.title
             print("{} track. {}, {} seconds".format(counter, yt.title, yt.length))
@@ -84,7 +83,7 @@ def main(playlist_url):
             video_folder_files = listdir('{}//visual'.format(script_path))
             rand_video = video_folder_files[randint(0, len(video_folder_files)-1)]
             length_of_video = int(rand_video.split(' ')[0])
-            position = randint(1, length_of_video - 8)
+            position = randint(1, length_of_video - 200)
             clip = VideoFileClip('{}/visual/{}'.format(script_path, rand_video), audio=False).subclip(position, position + 7)
             music = AudioFileClip('{}/music/{}.webm'.format(script_path, yt.title)).subclip(yt.length - 90, yt.length - 83)
             w, h = clip.size
@@ -111,17 +110,16 @@ def main(playlist_url):
                 print("ERROR. Title do not consists of name of artist or name of the track")
                 continue
 
-            clip_txt = TextClip(txt, color='white', align='West', fontsize=80, font='Arial-Bold', method='label',
+            clip_txt = TextClip(txt, color='white', align='West', fontsize=80, font='Candara-Bold-Italic', method='label',
                                 stroke_color='black', stroke_width=3)
 
             final = CompositeVideoClip([clip, clip_txt.set_pos(('center', 'center'))], size=moviesize)
             final = final.set_audio(music)
             final.set_duration(7).write_videofile("final//{}.mp4".format(yt.title))
 
-            break
-        #except:
-        #    print("ERROR while downloading or creating clip")
-        #    pass
+        except:
+            print("ERROR while downloading or creating clip")
+            pass
 
 
 if __name__ == "__main__":
@@ -129,7 +127,7 @@ if __name__ == "__main__":
     print('TikTok Video Creator v0.2')
     print('-------------------------')
     print()
-    vusials_playlist_url = "https://www.youtube.com/playlist?list=PLCqJefJxoW8wRGX7iAgImBcz084j9wM0h"
-    downloadVideosFromPlaylist(visuals_playlist_url)
+    #visuals_playlist_url = "https://www.youtube.com/playlist?list=PLCqJefJxoW8wRGX7iAgImBcz084j9wM0h"
+    #downloadVideosFromPlaylist(visuals_playlist_url)
     music_playlist_url = 'https://www.youtube.com/playlist?list=PLUGshIgZ8go9HT0dIUqnw3T2TjVB69ba8'
-    main(playlist_url)
+    main(music_playlist_url)
