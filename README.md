@@ -25,25 +25,25 @@ This script automatically creates short TikTok videos using downloaded video fil
 ### Downloading Videos and Audio
 Download a video or playlist from YouTube:
 ```bash
-python script.py --download_visuals <URL>
+python generate.py --download_visuals <URL>
 ```
 Download audio or playlist from YouTube:
 ```bash
-python script.py --download_music <URL>
+python generate.py --download_music <URL>
 ```
 
 ### Creating a Video
 Create a video with user-defined text:
 ```bash
-python script.py --text "Track Name" --duration 10
+python generate.py --text "Track Name" --duration 10
 ```
 Use an external mp3 file from the `music/` folder:
 ```bash
-python script.py --text "Track Name" --duration 10 --external_audio
+python generate.py --text "Track Name" --duration 10 --external_audio
 ```
 Set custom output video dimensions:
 ```bash
-python script.py --text "Track Name" --duration 10 --width 1920 --height 1080
+python generate.py --text "Track Name" --duration 10 --width 1920 --height 1080
 ```
 
 ### Command Line Arguments
