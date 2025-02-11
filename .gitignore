@@ -1,0 +1,16 @@
+music/*
+visual/*
+
+!music/.gitkeep
+!visual/.gitkeep
+
+venv/
+.env
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+*.log
+*.tmp
+.DS_Store
